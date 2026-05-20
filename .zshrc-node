@@ -1,0 +1,59 @@
+YELLOW=$'\033[1;33m'
+RESET=$'\033[0m'
+PREFIX="${YELLOW}[safer-installs]${RESET} "
+
+npm() {
+    echo "${PREFIX}npm is disabled. "
+    echo "Use pnpm instead, which has better security configurations, "
+    echo "see ~/.config/pnpm/config.yaml for more information. "
+    echo ""
+    echo -n "Run with pnpm instead? [y/N] "
+    read -r answer
+    if [[ "$answer" == "y" || "$answer" == "Y" ]]; then
+        command pnpm "$@"
+    else
+        echo "Cancelled. To force npm directly: command npm $*"
+        return 1
+    fi
+}
+
+prompt-safer-npx() {
+    ORIGINAL_COMMAND="$1"
+    ARGS=("${@:2}")
+    echo "${PREFIX}$ORIGINAL_COMMAND is disabled. "
+    echo "Use safe-npx instead, which builds with pnpm, runs and cleans up, "
+    echo "which has better security configurations, "
+    echo "see ~/.config/pnpm/config.yaml for more information. "
+    echo ""
+    echo -n "Run with safer-npx instead? [y/N] "
+    read -r answer
+    if [[ "$answer" == "y" || "$answer" == "Y" ]]; then
+        safer-npx "$@"
+    else
+        echo "Cancelled. To force $ORIGINAL_COMMAND directly:"
+        echo "command $ORIGINAL_COMMAND ${ARGS[*]}"
+        return 1
+    fi
+}
+
+npx() {
+    prompt-safer-npx npx "$@"
+}
+
+pnpx() {
+    prompt-safer-npx pnpx "$@"
+}
+
+bunx() {
+    prompt-safer-npx bunx "$@"
+}
+
+pnpm() {
+    if [[ "$1" == "dlx" ]]; then
+        prompt-safer-npx "pnpm dlx" "${@:2}"
+    else
+        # This environment variable ensures that pnpm uses the the
+        # ~/.config/pnpm path on macOS (instead of ~/Library/preferences).
+        XDG_CONFIG_HOME="$HOME/.config" command pnpm "$@"
+    fi
+}

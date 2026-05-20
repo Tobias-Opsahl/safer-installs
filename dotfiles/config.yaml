@@ -1,0 +1,49 @@
+# Requires pnpm version v11 or newer.
+# See the full documentation here: https://pnpm.io/settings
+
+# Follow pnpm-lock.yaml strictly. Do not perform
+# dependency resolution, which can lead to changes in versions.
+# Does not influence `pnpm add`.
+preferFrozenLockfile: true
+
+# Do not add prefixes to `package.json`. The prefix "^" allows
+# upgrades, while "~" allows patches.
+savePrefix: ""
+
+# Do not install package versions published less than this many minutes ago.
+# 10080 minutes = 7 days. Default in v11 is 1440 (1 day).
+minimumReleaseAge: 10080
+
+# Packages exempt from the age gate.
+# minimumReleaseAgeExclude:
+# - some-package-name
+
+# Strict mode, when no version of a package satisfies `minimumReleaseAge`,
+# do not install it (add it to `minimumReleaseAgeExclude` instead).
+minimumReleaseAgeStrict: true
+
+# Fail if a package has no publish timestamp
+minimumReleaseAgeIgnoreMissingTime: false
+
+# Do not execute any scripts in `package.json`.
+ignoreScripts: true
+
+# Fail if any dependency has unreviewed build (post-install) scripts.
+strictDepBuilds: true
+
+# Allow lists for packages that needs to run scripts.
+# allowBuilds:
+#   some-package-name: true
+
+# Fails if the trust level of a package decreases compared to previous versions.
+trustPolicy: no-downgrade
+
+# Blocks everything that is not direct dependencies (in `package.json`) to
+# use "exotic sources", like git repositories and direct URL links to tarball.
+blockExoticSubdeps: true
+
+# Fails if a package is not compatible with current node version.
+engineStrict: true
+
+# Always do SSL key validation when making request to registry with HTTPS.
+strictSsl: true
