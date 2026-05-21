@@ -14,6 +14,15 @@ The project consists entirely of a few dotfiles and shell commands. It configure
 
 Commands for `npm` and `pip` are then aliased with shell functions so that they are disabled by default, with `pnpm` and `uv` alternatives instead. This can be overridden with `command npm` or `command pip`. There is also a `safer-npx` function which emulates `npx` by creating a temporary directory, installing with `pnpm`, running it and cleaning up, which uses the configured security settings and is thus more secure.
 
+## Prerequisites
+
+The package manager (`pnpm`)[https://pnpm.io/] is needed for Node and (`uv`)[https://docs.astral.sh/uv/] is needed for Python. These can be installed with:
+
+```shell
+corepack prepare pnpm@11.1 --activate
+brew install uv
+```
+
 ## Setup
 
 The settings can be set up by running `./install.sh` on macOS or Linux (there is no direct Windows support, but the files probably just need to be added to another place). This simply copies over the dotfiles and shell functions. One then have to add the following lines in `~/.zshrc` (or `~/.bashrc` or similar):
