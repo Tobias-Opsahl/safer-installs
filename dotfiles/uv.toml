@@ -1,0 +1,31 @@
+# For more information, see the documentation at:
+# https://docs.astral.sh/uv/reference/settings
+
+# Use at least this version of uv, so that these settings will be enabled.
+required-version = ">=0.9.17"
+
+# Only install packages that are at least this old.
+exclude-newer = "7 days"
+
+# Make exceptions for the exclude-newer rule
+# exclude-newer-package = {
+#     some-package: false
+# }
+
+# Do not build packages from source, disables arbitrary python execution.
+no-build = true
+
+# Only look for available packages in the first available registry.
+# Prevents "dependency confusion". 
+index-strategy = "first-index"
+
+# Do not automatically download a Python version.
+# Use `uv python install 3.14` instead.
+python-downloads = "manual"
+
+[pip]
+# Require cryptographic hash verification for all packages.
+# require-hashes = true
+
+# Do not build any packages or run any python code.
+no-build = true

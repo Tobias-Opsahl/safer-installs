@@ -52,7 +52,7 @@ pnpm() {
     if [[ "$1" == "dlx" ]]; then
         prompt-safer-npx "pnpm dlx" "${@:2}"
     else
-        # This environment variable ensures that pnpm uses the the
+        # This environment variable ensures that pnpm uses the
         # ~/.config/pnpm path on macOS (instead of ~/Library/preferences).
         XDG_CONFIG_HOME="$HOME/.config" command pnpm "$@"
     fi

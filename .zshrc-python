@@ -1,0 +1,25 @@
+YELLOW=$'\033[1;33m'
+RESET=$'\033[0m'
+PREFIX="${YELLOW}[safer-installs]${RESET} "
+
+cancel-pip() {
+    ORIGINAL_COMMAND="$1"
+    echo "${PREFIX}$ORIGINAL_COMMAND is disabled. "
+    echo "Use uv instead, which is faster, more modern "
+    echo "and has more security features enabled. "
+    echo "see ~/.config/uv/uv.toml for more information. "
+    echo ""
+    echo "To force pip, use \"command pip\". "
+}
+
+pip() {
+    cancel-pip pip
+}
+
+pip3() {
+    cancel-pip pip3
+}
+
+pipx() {
+    cancel-pip pipx
+}
