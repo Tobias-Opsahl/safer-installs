@@ -1,0 +1,15 @@
+# Ensure some security settings for bun installations.
+# See the docs at https://bun.com/docs/runtime/bunfig for more information.
+
+[install]
+# Do not run any pre-install or post-install scripts.
+ignoreScripts = true
+
+# Do not install packages less than this amount of seconds old.
+minimumReleaseAge = 604800
+
+# Do not modify the lockfile.
+frozenLockfile = true
+
+# Pin exact versions.
+exact = true
